@@ -21,13 +21,12 @@ module.exports = (plugin,options = {}) ->
   Hoek.assert hapiIdentityStore(),"Could not find 'hapi-identity-store' plugin."
 
   OauthAccessTokenModel = -> hapiIdentityStore().models.OauthAccessToken
-  Hoek.assert OauthAccessTokenModel(),"Could not find 'models.OauthAccessToken' plugin."
+  methodsUsers = -> hapiIdentityStore().methods.users
+  methodsOauthAuth = -> hapiIdentityStore().methods.oauthAuth
 
-
-  users = -> hapiIdentityStore().methods.users
-  oauthAuth = -> hapiIdentityStore().methods.oauthAuth
-  oauthApps = -> hapiIdentityStore().methods.oauthApps
-
+  Hoek.assert methodsUsers(),"Could not find 'methods.users' in 'hapi-identity-store' plugin."
+  Hoek.assert methodsOauthAuth(),"Could not find  'methods.oauthAuth' in 'hapi-identity-store' plugin."
+  Hoek.assert OauthAccessTokenModel(),"Could not find 'models.OauthAccessToken' in 'hapi-identity-store' plugin."
 
 
   plugin.route
@@ -41,8 +40,8 @@ module.exports = (plugin,options = {}) ->
       login = request.payload.login
       password = request.payload.password
 
-
-      users().validateUserByUsernameOrEmail options.accountId,login, password, (err, user) ->
+      methodsUsers().validateUserByUsernameOrEmail options.accountId,login, password,null, (err, user) ->
+        console.log "B"
         return reply err if err
 
         ###
@@ -50,7 +49,7 @@ module.exports = (plugin,options = {}) ->
         ###
         return reply Boom.badRequest("Invalid login or password.") unless user
 
-        helperAddTokenToUser oauthAuth(), options.baseUrl,options.accountId,user._id,options.clientId,options.realm,options.scope,user, (err, userWithToken) ->
+        helperAddTokenToUser methodsOauthAuth(), options.baseUrl,options.accountId,user._id,options.clientId,options.realm,options.scope,user, (err, userWithToken) ->
           return reply err if err
           reply userWithToken
 
@@ -58,12 +57,11 @@ module.exports = (plugin,options = {}) ->
     path: "/sessions/me"
     method: "DELETE"
     handler: (request, reply) ->
-      token = request.auth.credentials.token
-
-      console.log "DELETING TOKEN #{token}"
+      token = request.auth?.credentials?.token
+      return reply Boom.unauthorized("Authentication required for this endpoint. You must supply a token") unless token
 
       OauthAccessTokenModel().remove _id : token, (err) =>
         return reply err if err
       
-        reply {}
+        reply().code(204)
 

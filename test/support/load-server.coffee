@@ -20,8 +20,8 @@ module.exports = loadServer = (cb) ->
     ,
       plugin: index
       options:
-        clientId:  '010101010101010101010a'
-        accountId: '010101010101010101010b'
+        clientId:  '01234567890123456789000a'
+        accountId: '01234567890123456789000b'
         baseUrl: "http://localhost:#{testPort}"
         realm: 'codedoctor'
         scope: null
