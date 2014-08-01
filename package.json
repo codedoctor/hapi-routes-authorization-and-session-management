@@ -1,6 +1,6 @@
 {
   "name": "hapi-routes-authorization-and-session-management",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "main": "lib/index.js",
   "repository": {
@@ -12,16 +12,16 @@
   },
   "description": "Provides API endpoints for HAPI servers to acquire/delete sessions and stuff. DO NOT USE YET.",
   "dependencies": {
-    "hoek" : ">=2.3.0",
-    "boom" : ">=2.4.2",
-    "joi" : ">=4.6.1",
+    "hoek": ">=2.3.0",
+    "boom": ">=2.4.2",
+    "joi": ">=4.6.1",
     "underscore": ">=1.6.0"
   },
   "peerDependencies": {
     "hapi": ">=6.2.1"
   },
   "devDependencies": {
-    "async" : "0.9.0",
+    "async": "0.9.0",
     "codo": "2.0.9",
     "coffee-script": "1.7.1",
     "grunt": "0.4.5",
@@ -33,13 +33,10 @@
     "grunt-release": "0.7.0",
     "grunt-shell": "0.7.0",
     "hapi": "6.2.1",
-    "hapi-identity-store" : "1.0.1",
+    "hapi-identity-store": "1.0.1",
     "matchdep": "0.3.0",
     "mocha": "1.20.1",
     "mongoose": "3.8.13",
-
     "should": "4.0.4"
-
-
   }
 }
