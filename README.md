@@ -68,15 +68,3 @@ DELETE /sessions/me
 expects a token (24 char hex string, mongodb uid) in the credentials, deletes the session if exists, returns 204 on success
 
 
-
-TODO:
-
-* tests (with setup):
-** delete existing token
-
-* clean validation-schema 
-* validate result?
-* check on realm and scope
-* publish
-* add to travis
-
