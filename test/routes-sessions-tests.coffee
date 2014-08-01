@@ -13,7 +13,7 @@ describe 'WHEN testing routes', ->
       cb err
 
   describe '/sessions', ->
-    it 'POST with valid data should return a token', (cb) ->
+    it 'POST with invalid data should return a token', (cb) ->
       options =
         method: "POST"
         url: "/sessions"
@@ -24,7 +24,7 @@ describe 'WHEN testing routes', ->
       server.inject options, (response) ->
         result = response.result
 
-        response.statusCode.should.equal 201
+        response.statusCode.should.equal 422
         should.exist result
 
   
@@ -36,14 +36,12 @@ describe 'WHEN testing routes', ->
         method: "DELETE"
         url: "/sessions/me"
         credentials:
-          token: "someToken"
+          token: "01234567890123456789000b"
 
 
       server.inject options, (response) ->
         result = response.result
 
         response.statusCode.should.equal 204
-        should.exist result
-
   
         cb null

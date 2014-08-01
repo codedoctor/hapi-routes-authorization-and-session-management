@@ -1,11 +1,10 @@
 _ = require 'underscore'
 Boom = require 'boom'
 Hoek = require "hoek"
-
-helperAddTokenToUser = require './helper-add-token-to-user'
-
 Joi = require "joi"
 url = require 'url'
+
+helperAddTokenToUser = require './helper-add-token-to-user'
 validationSchemas = require './validation-schemas'
 
 
@@ -41,13 +40,9 @@ module.exports = (plugin,options = {}) ->
       password = request.payload.password
 
       methodsUsers().validateUserByUsernameOrEmail options.accountId,login, password,null, (err, user) ->
-        console.log "B"
         return reply err if err
 
-        ###
-        @TODO Should be 422
-        ###
-        return reply Boom.badRequest("Invalid login or password.") unless user
+        return reply Boom.create(422,"Invalid login or password.") unless user
 
         helperAddTokenToUser methodsOauthAuth(), options.baseUrl,options.accountId,user._id,options.clientId,options.realm,options.scope,user, (err, userWithToken) ->
           return reply err if err

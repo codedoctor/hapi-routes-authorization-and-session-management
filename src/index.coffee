@@ -1,5 +1,6 @@
 routes = require './routes'
 Hoek = require 'hoek'
+
 ###
 options:
   clientId: 'some mongodb guid'
