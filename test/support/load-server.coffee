@@ -5,6 +5,8 @@ hapiIdentityStore = require 'hapi-identity-store'
 index = require '../../lib/index'
 mongoose = require 'mongoose'
 
+fixtures = require './fixtures'
+
 testMongoDbUrl = 'mongodb://localhost/codedoctor-test'
 testPort = 5675
 testHost = "localhost"
@@ -20,8 +22,8 @@ module.exports = loadServer = (cb) ->
     ,
       plugin: index
       options:
-        clientId:  '01234567890123456789000a'
-        accountId: '01234567890123456789000b'
+        clientId:  fixtures.clientId
+        accountId: fixtures.accountId
         baseUrl: "http://localhost:#{testPort}"
         realm: 'codedoctor'
         scope: null

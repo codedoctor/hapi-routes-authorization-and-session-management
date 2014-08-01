@@ -41,12 +41,12 @@ module.exports = (plugin,options = {}) ->
 
       methodsUsers().validateUserByUsernameOrEmail options.accountId,login, password,null, (err, user) ->
         return reply err if err
-
         return reply Boom.create(422,"Invalid login or password.") unless user
 
         helperAddTokenToUser methodsOauthAuth(), options.baseUrl,options.accountId,user._id,options.clientId,options.realm,options.scope,user, (err, userWithToken) ->
           return reply err if err
-          reply userWithToken
+          console.log JSON.stringify(userWithToken)
+          reply(userWithToken).code(201)
 
   plugin.route
     path: "/sessions/me"

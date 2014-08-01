@@ -30,6 +30,7 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-env": "0.4.1",
     "grunt-mocha-test": "0.11.0",
+    "grunt-release": "0.7.0",
     "grunt-shell": "0.7.0",
     "hapi": "6.2.1",
     "hapi-identity-store" : "1.0.1",
