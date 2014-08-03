@@ -8,7 +8,7 @@
     "url": "https://github.com/codedoctor/hapi-routes-authorization-and-session-management.git"
   },
   "scripts": {
-    "test": "node_modules/.bin/grunt test"
+    "test": "node_modules/.bin/grunt testandcoverage"
   },
   "description": "Provides API endpoints for HAPI servers to acquire/delete sessions and stuff. DO NOT USE YET.",
   "dependencies": {
