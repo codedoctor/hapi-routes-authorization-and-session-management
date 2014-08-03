@@ -1,3 +1,10 @@
+[![Build Status](https://travis-ci.org/codedoctor/hapi-routes-authorization-and-session-management.svg?branch=master)](https://travis-ci.org/codedoctor/hapi-routes-authorization-and-session-management)
+
+[![Coverage Status](https://img.shields.io/coveralls/codedoctor/hapi-routes-authorization-and-session-management.svg)](https://coveralls.io/r/codedoctor/hapi-routes-authorization-and-session-management)
+
+[![NPM Version](http://img.shields.io/npm/v/hapi-routes-authorization-and-session-management)](https://www.npmjs.org/package/hapi-routes-authorization-and-session-management)
+
+
 (C) 2014 Martin Wawrusch
 
 DO NOT USE YET
