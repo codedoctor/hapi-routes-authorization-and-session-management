@@ -58,6 +58,7 @@ module.exports =
     res
 
 
+###
   oauthApp: (oauthApp,baseUrl) ->
     return null unless oauthApp
 
@@ -134,5 +135,5 @@ module.exports =
 
     res.url = "#{baseUrl}/#{scope.name}"
     res
-
+  ###
 

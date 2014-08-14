@@ -101,100 +101,6 @@
       verified: user.verified
     };
     return res;
-  },
-  oauthApp: function(oauthApp, baseUrl) {
-    var localUrl, notRevokedClients, res;
-    if (!oauthApp) {
-      return null;
-    }
-    notRevokedClients = _.filter(oauthApp.clients || [], function(x) {
-      return !x.revokedAt;
-    });
-    localUrl = &quot;&quot; + baseUrl + &quot;&#47;&quot; + oauthApp._id;
-    res = {
-      url: localUrl,
-      id: oauthApp._id,
-      name: oauthApp.name,
-      description: oauthApp.description,
-      websiteUrl: oauthApp.websiteUrl,
-      imageUrl: oauthApp.imageUrl,
-      callbackUrl: oauthApp.callbackUrl,
-      notes: oauthApp.notes,
-      scopes: oauthApp.scopes,
-      revoked: oauthApp.revoked,
-      acceptTermsOfService: oauthApp.acceptTermsOfService,
-      isPublished: oauthApp.isPublished,
-      organizationName: oauthApp.organizationName,
-      organizationUrl: oauthApp.organizationUrl,
-      tosAcceptanceDate: oauthApp.tosAcceptanceDate,
-      clients: _.map(notRevokedClients, function(x) {
-        return module.exports.oauthClient(x, &quot;&quot; + localUrl + &quot;&#47;clients&quot;);
-      }),
-      redirectUrls: oauthApp.redirectUrls,
-      stats: oauthApp.stats,
-      tags: oauthApp.tags,
-      createdAt: oauthApp.createdAt,
-      updatedAt: oauthApp.updatedAt,
-      createdByUserId: oauthApp.createdByUserId,
-      accessibleBy: oauthApp.accessibleBy,
-      isDeleted: oauthApp.isDeleted || false,
-      deletedAt: oauthApp.deletedAt || null
-    };
-    return res;
-  },
-  organization: function(organization, baseUrl) {
-    var res;
-    if (!organization) {
-      return null;
-    }
-    res = {
-      url: &quot;&quot; + baseUrl + &quot;&#47;&quot; + organization._id,
-      id: organization._id,
-      name: organization.name,
-      description: organization.description,
-      stats: organization.stats || {},
-      resourceLimits: organization.resourceLimits || {},
-      profileLinks: organization.profileLinks || [],
-      data: organization.data || {},
-      tags: organization.tags,
-      createdAt: organization.createdAt,
-      updatedAt: organization.updatedAt,
-      createdByUserId: organization.createdByUserId,
-      accessibleBy: organization.accessibleBy,
-      isDeleted: organization.isDeleted || false,
-      deletedAt: organization.deletedAt || null
-    };
-    return res;
-  },
-  oauthClient: function(oauthClient, baseUrl) {
-    var res;
-    if (!oauthClient) {
-      return null;
-    }
-    res = {
-      url: &quot;&quot; + baseUrl + &quot;&#47;&quot; + oauthClient._id,
-      id: oauthClient._id,
-      clientId: oauthClient.clientId,
-      secret: oauthClient.secret,
-      createdAt: oauthClient.createdAt,
-      revokedAt: oauthClient.revokedAt
-    };
-    return res;
-  },
-  scope: function(scope, baseUrl) {
-    var res;
-    if (!scope) {
-      return null;
-    }
-    res = {
-      slug: scope.name,
-      name: scope.name,
-      description: scope.description || &#39;&#39;,
-      developerDescription: scope.developerDescription || &#39;&#39;,
-      roles: scope.roles || []
-    };
-    res.url = &quot;&quot; + baseUrl + &quot;&#47;&quot; + scope.name;
-    return res;
   }
 }</code></pre>
     
@@ -202,7 +108,7 @@
 </dl>
     </div>
     <div id='footer'>
-  August 13, 14 22:22:18 by
+  August 13, 14 22:44:47 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

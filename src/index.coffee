@@ -1,6 +1,6 @@
 routes = require './routes'
 Hoek = require 'hoek'
-
+i18n = require './i18n'
 ###
 options:
   clientId: 'some mongodb guid'
@@ -17,7 +17,7 @@ module.exports.register = (plugin, options = {}, cb) ->
 
   routes plugin,options
 
-  plugin.expose 'dummy', {} if process.env.NODE_ENV is 'test' # test for plugin loaded during test
+  plugin.expose 'i18n', i18n # if process.env.NODE_ENV is 'test' # test for plugin loaded during test
 
   cb()
 
