@@ -2,7 +2,7 @@
 
 module.exports = 
   clientId:  '01234567890123456789000a'
-  accountId: '01234567890123456789000b'
+  _tenantId: '01234567890123456789000b'
 
   user1:
     username: 'user1'

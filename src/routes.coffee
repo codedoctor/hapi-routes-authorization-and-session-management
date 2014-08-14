@@ -10,22 +10,24 @@ validationSchemas = require './validation-schemas'
 
 module.exports = (plugin,options = {}) ->
   Hoek.assert options.clientId,"options parameter requires a clientId"
-  Hoek.assert options.accountId,"options parameter requires an accountId"
+  Hoek.assert options._tenantId,"options parameter requires an _tenantId"
   Hoek.assert options.baseUrl,"options parameter requires an baseUrl"
   Hoek.assert options.realm,"options parameter requires a realm"
   options.scope ||= null
 
 
-  hapiIdentityStore = -> plugin.plugins['hapi-identity-store']
-  Hoek.assert hapiIdentityStore(),"Could not find 'hapi-identity-store' plugin."
+  hapiOauthStoreMultiTenant = -> plugin.plugins['hapi-oauth-store-multi-tenant']
+  Hoek.assert hapiOauthStoreMultiTenant(),"Could not find 'hapi-oauth-store-multi-tenant' plugin."
+  hapiUserStoreMultiTenant = -> plugin.plugins['hapi-user-store-multi-tenant']
+  Hoek.assert hapiUserStoreMultiTenant(),"Could not find 'hapi-user-store-multi-tenant' plugin."
 
-  OauthAccessTokenModel = -> hapiIdentityStore().models.OauthAccessToken
-  methodsUsers = -> hapiIdentityStore().methods.users
-  methodsOauthAuth = -> hapiIdentityStore().methods.oauthAuth
+  OauthAccessTokenModel = -> hapiOauthStoreMultiTenant().models.OauthAccessToken
+  methodsOauthAuth = -> hapiOauthStoreMultiTenant().methods.oauthAuth
+  methodsUsers = -> hapiUserStoreMultiTenant().methods.users
 
-  Hoek.assert methodsUsers(),"Could not find 'methods.users' in 'hapi-identity-store' plugin."
-  Hoek.assert methodsOauthAuth(),"Could not find  'methods.oauthAuth' in 'hapi-identity-store' plugin."
-  Hoek.assert OauthAccessTokenModel(),"Could not find 'models.OauthAccessToken' in 'hapi-identity-store' plugin."
+  Hoek.assert OauthAccessTokenModel(),"Could not find 'models.OauthAccessToken' in 'hapi-oauth-store-multi-tenant' plugin."
+  Hoek.assert methodsOauthAuth(),"Could not find  'methods.oauthAuth' in 'hapi-oauth-store-multi-tenant' plugin."
+  Hoek.assert methodsUsers(),"Could not find 'methods.users' in 'hapi-user-store-multi-tenant' plugin."
 
 
   plugin.route
@@ -39,11 +41,11 @@ module.exports = (plugin,options = {}) ->
       login = request.payload.login
       password = request.payload.password
 
-      methodsUsers().validateUserByUsernameOrEmail options.accountId,login, password,null, (err, user) ->
+      methodsUsers().validateUserByUsernameOrEmail options._tenantId,login, password,null, (err, user) ->
         return reply err if err
         return reply Boom.create(422,"Invalid login or password.") unless user
 
-        helperAddTokenToUser methodsOauthAuth(), options.baseUrl,options.accountId,user._id,options.clientId,options.realm,options.scope,user, (err, userWithToken) ->
+        helperAddTokenToUser methodsOauthAuth(), options.baseUrl,options._tenantId,user._id,options.clientId,options.realm,options.scope,user, (err, userWithToken) ->
           return reply err if err
           console.log JSON.stringify(userWithToken)
           reply(userWithToken).code(201)
