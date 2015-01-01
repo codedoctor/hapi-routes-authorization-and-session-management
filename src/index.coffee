@@ -1,6 +1,9 @@
-routes = require './routes'
 Hoek = require 'hoek'
+
 i18n = require './i18n'
+routesSessionsPost = require './routes-sessions-post'
+routesSessionsMeDelete = require './routes-sessions-me-delete'
+
 ###
 options:
   clientId: 'some mongodb guid'
@@ -9,15 +12,16 @@ options:
 ``realm: ignore for now
   scope: leave to null
 ###
-module.exports.register = (plugin, options = {}, cb) ->
+module.exports.register = (server, options = {}, cb) ->
 
   defaults =
     realm: "default"
   options = Hoek.applyToDefaults defaults, options
 
-  routes plugin,options
+  routesSessionsPost server,options
+  routesSessionsMeDelete server,options
 
-  plugin.expose 'i18n', i18n # if process.env.NODE_ENV is 'test' # test for plugin loaded during test
+  server.expose 'i18n', i18n # if process.env.NODE_ENV is 'test' # test for plugin loaded during test
 
   cb()
 

@@ -21,13 +21,13 @@
     &raquo;
     <span class='title'>src</span>
     &raquo;
-    <span class='title'>helper-obj-to-rest.coffee</span>
+    <span class='title'>routes-sessions-post.coffee</span>
   </div>
 </div>
     <div id='content'>
       <h1>
         File:
-        helper-obj-to-rest.coffee
+        routes-sessions-post.coffee
       </h1>
       <table class='box'>
         <tr>
@@ -35,77 +35,6 @@
           <td>src</td>
         </tr>
       </table>
-      <h2>Variables Summary</h2>
-      <dl class='constants'>
-  <dt id='module.exports-variable'>
-    module.exports
-    =
-  </dt>
-  <dd>
-    <pre><code class='coffeescript'>{
-  identity: function(identity, baseUrl) {
-    var res;
-    if (!identity) {
-      return null;
-    }
-    res = {
-      url: &quot;&quot; + baseUrl + &quot;&#47;&quot; + identity._id,
-      id: identity._id,
-      provider: identity.provider,
-      key: identity.key,
-      v1: identity.v1,
-      v2: identity.v2,
-      providerType: identity.providerType,
-      username: identity.username,
-      displayName: identity.displayName,
-      profileImage: identity.profileImage
-    };
-    return res;
-  },
-  user: function(user, baseUrl) {
-    var localUrl, res;
-    if (!user) {
-      return null;
-    }
-    localUrl = &quot;&quot; + baseUrl + &quot;&#47;&quot; + user._id;
-    res = {
-      url: localUrl,
-      id: user._id,
-      username: user.username,
-      displayName: user.displayName,
-      description: user.description,
-      identities: _.map(user.identities || [], function(x) {
-        return module.exports.identity(x, &quot;&quot; + localUrl + &quot;&#47;identities&quot;);
-      }),
-      profileLinks: user.profileLinks || [],
-      userImages: user.userImages || [],
-      selectedUserImage: user.selectedUserImage,
-      emails: user.emails || [],
-      roles: user.roles || [],
-      data: user.data || {},
-      stats: user.stats || {},
-      resourceLimits: user.resourceLimits || {},
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-      isDeleted: user.isDeleted || false,
-      deletedAt: user.deletedAt || null,
-      onboardingState: user.onboardingState,
-      primaryEmail: user.primaryEmail,
-      resetPasswordToken: user.resetPasswordToken,
-      title: user.title,
-      location: user.location,
-      needsInit: user.needsInit,
-      gender: user.gender,
-      timezone: user.timezone,
-      locale: user.locale,
-      verified: user.verified
-    };
-    return res;
-  }
-}</code></pre>
-    
-  </dd>
-</dl>
     </div>
     <div id='footer'>
   January 01, 15 12:28:19 by

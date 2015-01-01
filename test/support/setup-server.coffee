@@ -16,25 +16,23 @@ module.exports = (server,cb) ->
     organizationName: 'codedoctor'
     organizationUrl: 'http://somesite.com'
     tosAcceptanceDate : null
-    clients: [
-      clientId: fixtures.clientId
-    ]
+    clientId: fixtures.clientId # Changed in later underlying code
 
     redirectUrls: []
     stat: 
       tokensGranted : 0
       tokensRevoked : 0
 
-  methodsOauth = server.pack.plugins['hapi-oauth-store-multi-tenant'].methods
-  methodsUser = server.pack.plugins['hapi-user-store-multi-tenant'].methods
+  methodsOauth = server.plugins['hapi-oauth-store-multi-tenant'].methods
+  methodsUser = server.plugins['hapi-user-store-multi-tenant'].methods
 
   methodsOauth.oauthApps.create fixtures._tenantId,data,null, (err,app) ->
     return cb err if err
+    
     dataUser = 
       username: fixtures.user1.username
       password: fixtures.user1.password
       email: fixtures.user1.email
     methodsUser.users.create fixtures._tenantId,dataUser,null, (err,user) ->
-      console.log "USER: #{JSON.stringify(user)}"
-      cb err
+      cb err, app,user
 

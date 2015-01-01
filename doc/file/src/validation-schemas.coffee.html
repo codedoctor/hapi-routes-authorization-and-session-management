@@ -76,25 +76,15 @@
   <dd>
     <pre><code class='coffeescript'>{
   validateId: validateId,
-  validatePassword: validatePassword,
-
-  &#47;*
-  Posting a new session.
-   *&#47;
-  schemaSessionsPost: Joi.object().keys({
-    login: Joi.string().min(minLoginLength).max(maxLoginLength).required().example(&#39;johnsmith&#39;).description(&#39;The login field can either be an email address or a username.&#39;),
-    password: validatePassword.required().description(&#39;The password used to authenticate this session.&#39;)
-  }).options({
-    allowUnkown: true,
-    stripUnknown: true
-  })
+  password: Joi.string().min(minPasswordLength).max(maxPasswordLength).example(&#39;some password&#39;),
+  login: Joi.string().min(minLoginLength).max(maxLoginLength).example(&#39;johnsmith&#39;).description(&#39;The login field can either be an email address or a username.&#39;)
 }</code></pre>
     
   </dd>
 </dl>
     </div>
     <div id='footer'>
-  August 13, 14 22:45:33 by
+  January 01, 15 12:28:19 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

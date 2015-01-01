@@ -8,6 +8,7 @@ setupServer = require './support/setup-server'
 describe 'WHEN testing routes', ->
   server = null
 
+
   beforeEach (cb) ->
     loadServer (err,serverResult) ->
       server = serverResult
@@ -30,8 +31,14 @@ describe 'WHEN testing routes', ->
         cb null
 
   describe '/sessions with server setup', ->
+    app = null
+    user = null
     beforeEach (cb) ->
-      setupServer server,cb
+      setupServer server, (err,appResult,userResult) ->
+        return cb err if err
+        app = appResult
+        user = userResult
+        cb null
 
     it 'POST with invalid data should return a 422', (cb) ->
       options =

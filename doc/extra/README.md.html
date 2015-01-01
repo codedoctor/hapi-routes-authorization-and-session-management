@@ -40,9 +40,9 @@
 <a href="https://gemnasium.com/codedoctor/hapi-routes-authorization-and-session-management"><img src="https://gemnasium.com/codedoctor/hapi-routes-authorization-and-session-management.svg" alt="Dependency Status"></a>
 <a href="https://www.npmjs.org/package/hapi-routes-authorization-and-session-management"><img src="http://img.shields.io/npm/dm/hapi-routes-authorization-and-session-management.svg" alt="NPM Downloads"></a>
 <a href="https://github.com/codedoctor/hapi-routes-authorization-and-session-management/issues"><img src="http://img.shields.io/github/issues/codedoctor/hapi-routes-authorization-and-session-management.svg" alt="Issues"></a>
-<a href="http://hapijs.com"><img src="http://img.shields.io/badge/hapi-6.0-blue.svg" alt="HAPI 6.0"></a>
-<a href="http://coffeedoc.info/github/codedoctor/hapi-routes-authorization-and-session-management"><img src="http://img.shields.io/badge/API-Documentation-ff69b4.svg" alt="API Documentation"></a></p><p>(C) 2014 Martin Wawrusch</p><p>DO NOT USE YET</p><p>Exposes routes to aquire and destroy sessions for APIs</p><p>Dependencies:</p><ul>
-<li>Requires HAPI &gt;= 6.0.0 and hapi-oauth-store-multi-tenant</li>
+<a href="http://hapijs.com"><img src="http://img.shields.io/badge/hapi-8.0-blue.svg" alt="HAPI 8.0"></a>
+<a href="http://coffeedoc.info/github/codedoctor/hapi-routes-authorization-and-session-management"><img src="http://img.shields.io/badge/API-Documentation-ff69b4.svg" alt="API Documentation"></a></p><p>(C) 2014 Martin Wawrusch</p><p>Exposes routes to aquire and destroy sessions for APIs</p><p>Dependencies:</p><ul>
+<li>Requires HAPI &gt;= 8.0.0 and hapi-oauth-store-multi-tenant</li>
 </ul><p>Routes exposed</p><p>POST /sessions</p><p>returns </p><pre><code class="lang-json">{  
    &quot;url&quot;:&quot;http://localhost:5675/users/53dc1187ee1768a162ea4060&quot;,
    &quot;id&quot;:&quot;53dc1187ee1768a162ea4060&quot;,
@@ -92,18 +92,22 @@
 expects a token (24 char hex string, mongodb uid) in the credentials, deletes the session if exists, returns 204 on success</p><h2 id="see-also">See also</h2>
 <ul>
 <li><a href="https://github.com/codedoctor/hapi-auth-bearer-mw">hapi-auth-bearer-mw</a></li>
-<li><a href="https://github.com/codedoctor/hapi-oauth-store-multi-tenant">hapi-oauth-store-multi-tenant</a></li>
+<li><a href="https://github.com/codedoctor/hapi-loggly">hapi-loggly</a></li>
+<li><a href="https://github.com/codedoctor/hapi-mandrill">hapi-mandrill</a></li>
 <li><a href="https://github.com/codedoctor/hapi-mongoose-db-connector">hapi-mongoose-db-connector</a></li>
+<li><a href="https://github.com/codedoctor/hapi-oauth-store-multi-tenant">hapi-oauth-store-multi-tenant</a></li>
 <li><a href="https://github.com/codedoctor/hapi-routes-authorization-and-session-management">hapi-routes-authorization-and-session-management</a></li>
+<li><a href="https://github.com/codedoctor/hapi-routes-oauth-management">hapi-routes-oauth-management</a></li>
 <li><a href="https://github.com/codedoctor/hapi-routes-roles">hapi-routes-roles</a></li>
 <li><a href="https://github.com/codedoctor/hapi-routes-status">hapi-routes-status</a></li>
 <li><a href="https://github.com/codedoctor/hapi-routes-users-authorizations">hapi-routes-users-authorizations</a></li>
-<li><a href="https://github.com/codedoctor/hapi-routes-oauth-management">hapi-routes-oauth-management</a></li>
 <li><a href="https://github.com/codedoctor/hapi-routes-users">hapi-routes-users</a></li>
+<li><a href="https://github.com/codedoctor/hapi-user-store-multi-tenant">hapi-user-store-multi-tenant</a></li>
 </ul><p>and additionally</p><ul>
-<li><a href="https://github.com/codedoctor/mongoose-identity-store-multi-tenant">mongoose-identity-store-multi-tenant</a></li>
-<li><a href="https://github.com/codedoctor/mongoose-rest-helper">mongoose-rest-helper</a></li>
 <li><a href="https://github.com/codedoctor/api-pagination">api-pagination</a></li>
+<li><a href="https://github.com/codedoctor/mongoose-oauth-store-multi-tenant">mongoose-oauth-store-multi-tenant</a></li>
+<li><a href="https://github.com/codedoctor/mongoose-rest-helper">mongoose-rest-helper</a></li>
+<li><a href="https://github.com/codedoctor/mongoose-user-store-multi-tenant">mongoose-user-store-multi-tenant</a></li>
 </ul>
 <h2 id="contributing">Contributing</h2>
 <ul>
@@ -119,7 +123,7 @@ expects a token (24 char hex string, mongodb uid) in the credentials, deletes th
       </div>
     </div>
     <div id='footer'>
-  August 13, 14 22:45:33 by
+  January 01, 15 12:28:19 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

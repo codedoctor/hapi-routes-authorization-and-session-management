@@ -4,20 +4,18 @@
 [![Dependency Status](https://gemnasium.com/codedoctor/hapi-routes-authorization-and-session-management.svg)](https://gemnasium.com/codedoctor/hapi-routes-authorization-and-session-management)
 [![NPM Downloads](http://img.shields.io/npm/dm/hapi-routes-authorization-and-session-management.svg)](https://www.npmjs.org/package/hapi-routes-authorization-and-session-management)
 [![Issues](http://img.shields.io/github/issues/codedoctor/hapi-routes-authorization-and-session-management.svg)](https://github.com/codedoctor/hapi-routes-authorization-and-session-management/issues)
-[![HAPI 6.0](http://img.shields.io/badge/hapi-6.0-blue.svg)](http://hapijs.com)
+[![HAPI 8.0](http://img.shields.io/badge/hapi-8.0-blue.svg)](http://hapijs.com)
 [![API Documentation](http://img.shields.io/badge/API-Documentation-ff69b4.svg)](http://coffeedoc.info/github/codedoctor/hapi-routes-authorization-and-session-management)
 
 
 
 (C) 2014 Martin Wawrusch
 
-DO NOT USE YET
-
 Exposes routes to aquire and destroy sessions for APIs
 
 Dependencies:
 
-* Requires HAPI >= 6.0.0 and hapi-oauth-store-multi-tenant
+* Requires HAPI >= 8.0.0 and hapi-oauth-store-multi-tenant
 
 Routes exposed
 
