@@ -38,7 +38,7 @@ module.exports = (server,options = {}) ->
         payload: Joi.object().keys(
                                     login: validationSchemas.login.required()
                                     password: validationSchemas.password.required().description('The password used to authenticate this session.')
-                                  ).options({ allowUnkown: true, stripUnknown: true })
+                                  ).options({ allowUnknown: true, stripUnknown: true })
     handler: (request, reply) ->
       login = request.payload.login
       password = request.payload.password
