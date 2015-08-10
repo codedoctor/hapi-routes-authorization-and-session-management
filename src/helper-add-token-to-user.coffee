@@ -2,7 +2,7 @@ _ = require 'underscore'
 Boom = require 'boom'
 #mongoose = require 'mongoose'
 
-helperObjToRest = require './helper-obj-to-rest'
+helperObjToRestUser = require './helper-obj-to-rest-user'
 
 module.exports = (oauthAuth, baseUrl,_tenantId,userId, clientId, realm, scope ,user, cb) ->
 
@@ -11,7 +11,7 @@ module.exports = (oauthAuth, baseUrl,_tenantId,userId, clientId, realm, scope ,u
       return cb err if err
       return cb new Boom.badRequest("#{baseUrl}/users") unless token
 
-      user = helperObjToRest.user user, "#{baseUrl}/users"
+      user = helperObjToRestUser user, "#{baseUrl}/users"
       _.extend user,
         token:
           accessToken : token.accessToken
@@ -19,4 +19,4 @@ module.exports = (oauthAuth, baseUrl,_tenantId,userId, clientId, realm, scope ,u
 
       cb null, user
   else
-    cb null, helperObjToRest.user user, "#{baseUrl}/users"
+    cb null, helperObjToRestUser user, "#{baseUrl}/users"

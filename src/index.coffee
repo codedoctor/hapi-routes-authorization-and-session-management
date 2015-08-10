@@ -1,8 +1,15 @@
 Hoek = require 'hoek'
 
 i18n = require './i18n'
-routesSessionsPost = require './routes-sessions-post'
-routesSessionsMeDelete = require './routes-sessions-me-delete'
+
+
+
+routesToExpose = [
+  require './routes-sessions-post'
+  require './routes-sessions-me-delete'
+]
+
+
 
 ###
 options:
@@ -16,10 +23,11 @@ module.exports.register = (server, options = {}, cb) ->
 
   defaults =
     realm: "default"
+    routeTagsPublic: ['api','api-public','session']
+    routeTagsAdmin: ['api','api-admin','session']
   options = Hoek.applyToDefaults defaults, options
 
-  routesSessionsPost server,options
-  routesSessionsMeDelete server,options
+  r server,options for r in routesToExpose
 
   server.expose 'i18n', i18n # if process.env.NODE_ENV is 'test' # test for plugin loaded during test
 

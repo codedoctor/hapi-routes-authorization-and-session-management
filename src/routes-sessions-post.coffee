@@ -34,9 +34,11 @@ module.exports = (server,options = {}) ->
     method: "POST"
     config:
       auth: false
+      tags: options.routeTagsPublic
+      description: "Creates a new session for a user. E.g. logs that user in."
       validate:
         payload: Joi.object().keys(
-                                    login: validationSchemas.login.required()
+                                    login: validationSchemas.login.required().description('The login used to authenticate this session, can either be an email address or a username.')
                                     password: validationSchemas.password.required().description('The password used to authenticate this session.')
                                   ).options({ allowUnknown: true, stripUnknown: true })
     handler: (request, reply) ->
