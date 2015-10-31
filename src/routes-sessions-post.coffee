@@ -8,6 +8,9 @@ i18n = require './i18n'
 helperAddTokenToUser = require './helper-add-token-to-user'
 validationSchemas = require './validation-schemas'
 
+routesDescription = """
+Creates a new session for a user. E.g. logs that user in.
+"""
 
 module.exports = (server,options = {}) ->
   #Hoek.assert options.clientId,i18n.assertOptionsClientIdRequired
@@ -35,13 +38,22 @@ module.exports = (server,options = {}) ->
     config:
       auth: false
       tags: options.routeTagsPublic
-      description: "Creates a new session for a user. E.g. logs that user in."
+      description: routesDescription
       validate:
+        params: Joi.object().options({allowUnknown: true, stripUnknown: true })
         payload: Joi.object().keys(
                                     login: validationSchemas.login.required().description('The login used to authenticate this session, can either be an email address or a username.')
                                     password: validationSchemas.password.required().description('The password used to authenticate this session.')
                                     clientId: validationSchemas.clientIdRequired
                                   ).options({ allowUnknown: true, stripUnknown: true })
+
+      response:
+        #schema: validationSchemas.responseDelete
+        status:
+          400: validationSchemas.errorBadRequest
+          422: validationSchemas.errorUnprocessableEntity
+          500: validationSchemas.errorInternalServerError
+
     handler: (request, reply) ->
       login = request.payload.login
       password = request.payload.password
@@ -51,10 +63,7 @@ module.exports = (server,options = {}) ->
         return reply err if err
         return reply Boom.create(422,i18n.errorInvalidLoginOrPassword) unless user
 
-        #clientId = request.payload.clientId || options.clientId
-
         helperAddTokenToUser methodsOauthAuth(), options.baseUrl,options._tenantId,user._id,clientId,options.realm,options.scope,user, (err, userWithToken) ->
           return reply err if err
           reply(userWithToken).code(201)
-
 

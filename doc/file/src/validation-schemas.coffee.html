@@ -78,14 +78,55 @@
   validateId: validateId,
   password: Joi.string().min(minPasswordLength).max(maxPasswordLength).example(&#39;some password&#39;),
   login: Joi.string().min(minLoginLength).max(maxLoginLength).example(&#39;johnsmith&#39;),
-  clientIdRequired: Joi.string().required().description(&quot;The API client id that you received for your oauth app.&quot;).example(&#39;1234567890abcdef&#39;)
+  clientIdRequired: Joi.string().required().description(&quot;The API client id that you received for your oauth app.&quot;).example(&#39;1234567890abcdef&#39;),
+  errorBadRequest: Joi.object({
+    statusCode: Joi.number().description(&quot;The http status code.&quot;).required()[&quot;default&quot;](400).example(400).integer(),
+    error: Joi.string().description(&quot;The short error name.&quot;).required()[&quot;default&quot;](&quot;Bad Request&quot;).example(&#39;Bad Request&#39;),
+    message: Joi.string().description(&quot;The detailed error message.&quot;).required()
+  }).description(&quot;The passed parameters probably failed some validation.&quot;).meta({
+    className: &#39;ErrorBadRequest&#39;
+  }).required().options({
+    allowUnknown: true,
+    stripUnknown: false
+  }),
+  errorUnauthorized: Joi.object({
+    statusCode: Joi.number().description(&quot;The http status code.&quot;).required()[&quot;default&quot;](401).example(401).integer(),
+    error: Joi.string().description(&quot;The short error name.&quot;).required()[&quot;default&quot;](&quot;Unauthorized&quot;).example(&#39;Unauthorized&#39;),
+    message: Joi.string().description(&quot;The detailed error message.&quot;).required()
+  }).description(&quot;You are not authorized to access this resource.&quot;).meta({
+    className: &#39;ErrorUnauthorized&#39;
+  }).required().options({
+    allowUnknown: true,
+    stripUnknown: false
+  }),
+  errorUnprocessableEntity: Joi.object({
+    statusCode: Joi.number().description(&quot;The http status code.&quot;).required()[&quot;default&quot;](422).example(422).integer(),
+    error: Joi.string().description(&quot;The short error name.&quot;).required()[&quot;default&quot;](&quot;Unprocessable Entity&quot;).example(&#39;Unprocessable Entity&#39;),
+    message: Joi.string().description(&quot;The detailed error message.&quot;).required()
+  }).description(&quot;The requested resource could not be processed.&quot;).meta({
+    className: &#39;ErrorUnprocessableEntity&#39;
+  }).required().options({
+    allowUnknown: true,
+    stripUnknown: false
+  }),
+  errorInternalServerError: Joi.object({
+    statusCode: Joi.number().description(&quot;The http status code.&quot;).required()[&quot;default&quot;](500).example(500).integer(),
+    error: Joi.string().description(&quot;The short error name.&quot;).required()[&quot;default&quot;](&quot;Internal Server Error&quot;).example(&quot;Internal Server Error&quot;),
+    message: Joi.string().description(&quot;The detailed error message.&quot;).required()
+  }).description(&quot;An internal server error occurred.&quot;).meta({
+    className: &#39;ErrorInternalServerError&#39;
+  }).required().options({
+    allowUnknown: true,
+    stripUnknown: false
+  }),
+  responseDelete: Joi.any().valid(null).description(&quot;Null response for DELETE requests.&quot;)
 }</code></pre>
     
   </dd>
 </dl>
     </div>
     <div id='footer'>
-  October 30, 15 21:24:22 by
+  October 30, 15 21:37:03 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

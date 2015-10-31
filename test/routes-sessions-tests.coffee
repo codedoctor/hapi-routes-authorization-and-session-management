@@ -14,6 +14,22 @@ describe 'routes-sessions-tests', ->
       server = serverResult
       cb err
 
+  describe '/sessions without client id', ->
+    it 'POST with invalid data should 400', (cb) ->
+      options =
+        method: "POST"
+        url: "/sessions"
+        payload: 
+          login: 'mw'
+          password: '12345678abc'
+ 
+      server.inject options, (response) ->
+        result = response.result
+
+        response.statusCode.should.equal 400
+        should.exist result
+        cb null
+
   describe '/sessions without server setup', ->
     it 'POST with invalid data should 422', (cb) ->
       options =
