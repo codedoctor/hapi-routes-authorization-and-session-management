@@ -10,7 +10,7 @@ validationSchemas = require './validation-schemas'
 
 
 module.exports = (server,options = {}) ->
-  Hoek.assert options.clientId,i18n.assertOptionsClientIdRequired
+  #Hoek.assert options.clientId,i18n.assertOptionsClientIdRequired
   Hoek.assert options._tenantId,i18n.assertOptionsTenantIdRequired
   Hoek.assert options.baseUrl,i18n.assertOptionsBaseUrlRequired
   Hoek.assert options.realm,i18n.assertOptionsRealm
@@ -40,16 +40,20 @@ module.exports = (server,options = {}) ->
         payload: Joi.object().keys(
                                     login: validationSchemas.login.required().description('The login used to authenticate this session, can either be an email address or a username.')
                                     password: validationSchemas.password.required().description('The password used to authenticate this session.')
+                                    clientId: validationSchemas.clientIdRequired
                                   ).options({ allowUnknown: true, stripUnknown: true })
     handler: (request, reply) ->
       login = request.payload.login
       password = request.payload.password
+      clientId = request.payload.clientId
 
       methodsUsers().validateUserByUsernameOrEmail options._tenantId,login, password,null, (err, user) ->
         return reply err if err
         return reply Boom.create(422,i18n.errorInvalidLoginOrPassword) unless user
 
-        helperAddTokenToUser methodsOauthAuth(), options.baseUrl,options._tenantId,user._id,options.clientId,options.realm,options.scope,user, (err, userWithToken) ->
+        #clientId = request.payload.clientId || options.clientId
+
+        helperAddTokenToUser methodsOauthAuth(), options.baseUrl,options._tenantId,user._id,clientId,options.realm,options.scope,user, (err, userWithToken) ->
           return reply err if err
           reply(userWithToken).code(201)
 

@@ -77,14 +77,15 @@
     <pre><code class='coffeescript'>{
   validateId: validateId,
   password: Joi.string().min(minPasswordLength).max(maxPasswordLength).example(&#39;some password&#39;),
-  login: Joi.string().min(minLoginLength).max(maxLoginLength).example(&#39;johnsmith&#39;)
+  login: Joi.string().min(minLoginLength).max(maxLoginLength).example(&#39;johnsmith&#39;),
+  clientIdRequired: Joi.string().required().description(&quot;The API client id that you received for your oauth app.&quot;).example(&#39;1234567890abcdef&#39;)
 }</code></pre>
     
   </dd>
 </dl>
     </div>
     <div id='footer'>
-  August 10, 15 05:12:51 by
+  October 30, 15 21:24:22 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

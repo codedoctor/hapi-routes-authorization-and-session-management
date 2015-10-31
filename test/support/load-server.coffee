@@ -26,9 +26,24 @@ module.exports = loadServer = (cb) ->
     ,
       register: hapiUserStoreMultiTenant
     ,
+      register: require 'hapi-swaggered'
+      options: 
+        auth: false
+        #cors: null
+        info:
+          title: 'Some API'
+          description: ''
+          version: '1.0'
+          contact:
+            name: "Developer support"
+            url: "http://codedoctor.co/contact"
+            email: "info@codedoctor.co"
+        host: "api.codedoctor.co"
+        responseValidation: false
+    ,
       register: index
       options:
-        clientId:  fixtures.clientId
+        #clientId:  fixtures.clientId
         _tenantId: fixtures._tenantId
         baseUrl: "http://localhost:#{testPort}"
         realm: 'codedoctor'

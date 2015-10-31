@@ -15,7 +15,7 @@ Exposes routes to aquire and destroy sessions for APIs
 
 Dependencies:
 
-* Requires HAPI >= 8.0.0 and hapi-oauth-store-multi-tenant
+* Requires HAPI >= 10.0.0 and hapi-oauth-store-multi-tenant
 
 Routes exposed
 

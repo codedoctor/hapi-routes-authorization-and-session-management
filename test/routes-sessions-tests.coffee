@@ -5,7 +5,7 @@ fixtures = require './support/fixtures'
 loadServer = require './support/load-server'
 setupServer = require './support/setup-server'
 
-describe 'WHEN testing routes', ->
+describe 'routes-sessions-tests', ->
   server = null
 
 
@@ -22,6 +22,7 @@ describe 'WHEN testing routes', ->
         payload: 
           login: 'mw'
           password: '12345678abc'
+          clientId: fixtures.clientId
  
       server.inject options, (response) ->
         result = response.result
@@ -47,7 +48,7 @@ describe 'WHEN testing routes', ->
         payload: 
           login: 'mw'
           password: '12345678abc'
- 
+          clientId: fixtures.clientId
       server.inject options, (response) ->
         result = response.result
 
@@ -64,6 +65,7 @@ describe 'WHEN testing routes', ->
         payload: 
           login: fixtures.user1.username
           password: fixtures.user1.password
+          clientId: fixtures.clientId
  
       server.inject options, (response) ->
         result = response.result
@@ -114,6 +116,7 @@ describe 'WHEN testing routes', ->
         payload: 
           login: fixtures.user1.username
           password: fixtures.user1.password
+          clientId: fixtures.clientId
  
       server.inject options, (response) ->
         result = response.result
