@@ -42,3 +42,10 @@ module.exports =
 
   responseDelete: Joi.any().valid(null).description("Null response for DELETE requests.")
 
+  refreshTokenRequired:         Joi.string().required().description("The required refresh token. Not supported in the API yet.").example("lsdfdikwmmsxjewjdjkkekkeee")
+  accessTokenRequired:          Joi.string().required().description("The required access token that can be used to access envy api services. Store this in the client and pass it with every request.").example("sduejjfcsuu33ed")
+  usernameRequired:             Joi.string().required().description("The username of this user.").example("janedoe")
+  userIdRequired:               Joi.string().required().description("The required userId.")
+  primaryEmailOptional:         Joi.string().email().allow(null).empty("").optional().description("The users primary email address.").example("jane@doe.com")
+
+

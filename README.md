@@ -76,6 +76,13 @@ on success with 201, otherwise 422
 DELETE /sessions/me
 expects a token (24 char hex string, mongodb uid) in the credentials, deletes the session if exists, returns 204 on success
 
+## Change Log
+
+3.0.0
+* Most of the API is now fully validated, although the individual validation needs more fine tuning.
+* BREAKING: Posting to create a session now requires a clientId, the options parameter is now ignored.
+
+
 ## See also
 
 * [hapi-auth-bearer-mw](https://github.com/codedoctor/hapi-auth-bearer-mw)

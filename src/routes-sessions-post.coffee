@@ -48,7 +48,7 @@ module.exports = (server,options = {}) ->
                                   ).options({ allowUnknown: true, stripUnknown: true })
 
       response:
-        #schema: validationSchemas.responseDelete
+        schema: Joi.object().description("The session object. Might contain more info than shown in the docs.").options({ allowUnknown: true, stripUnknown: false })
         status:
           400: validationSchemas.errorBadRequest
           422: validationSchemas.errorUnprocessableEntity

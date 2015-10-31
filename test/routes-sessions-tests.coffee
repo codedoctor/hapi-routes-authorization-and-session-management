@@ -91,6 +91,8 @@ describe 'routes-sessions-tests', ->
         result.should.have.property "token"
         result.token.should.have.property "accessToken"
         result.token.should.have.property "refreshToken"
+
+        console.log JSON.stringify(result)
   
         cb null
 

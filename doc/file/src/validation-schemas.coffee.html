@@ -119,14 +119,19 @@
     allowUnknown: true,
     stripUnknown: false
   }),
-  responseDelete: Joi.any().valid(null).description(&quot;Null response for DELETE requests.&quot;)
+  responseDelete: Joi.any().valid(null).description(&quot;Null response for DELETE requests.&quot;),
+  refreshTokenRequired: Joi.string().required().description(&quot;The required refresh token. Not supported in the API yet.&quot;).example(&quot;lsdfdikwmmsxjewjdjkkekkeee&quot;),
+  accessTokenRequired: Joi.string().required().description(&quot;The required access token that can be used to access envy api services. Store this in the client and pass it with every request.&quot;).example(&quot;sduejjfcsuu33ed&quot;),
+  usernameRequired: Joi.string().required().description(&quot;The username of this user.&quot;).example(&quot;janedoe&quot;),
+  userIdRequired: Joi.string().required().description(&quot;The required userId.&quot;),
+  primaryEmailOptional: Joi.string().email().allow(null).empty(&quot;&quot;).optional().description(&quot;The users primary email address.&quot;).example(&quot;jane@doe.com&quot;)
 }</code></pre>
     
   </dd>
 </dl>
     </div>
     <div id='footer'>
-  October 30, 15 21:37:03 by
+  October 30, 15 21:49:55 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
